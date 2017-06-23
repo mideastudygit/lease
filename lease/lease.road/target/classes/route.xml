@@ -1,0 +1,17 @@
+<!-- 路由映射关系配置 -->
+<route>
+	<modules>
+		<module name="center" url="center.url" />
+	</modules>
+
+	<methods>
+		<!-- 路外订单推送 -->
+		<method id="road.push.endOrder" module="center">
+			<param action="road.push.endOrder" />
+		</method>
+		<!-- 服务商信息 -->
+		<method id="provider.getProvider" module="center">
+			<param action="provider.getProvider" />
+		</method>
+	</methods>
+</route>

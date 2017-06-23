@@ -1,0 +1,72 @@
+<!-- 路由映射关系配置 -->
+<route>
+	<modules>
+		<module name="center" url="center.url" />
+	</modules>
+
+	<methods>
+		<!-- 公共参数 -->
+		<method id="param.getParameter" module="center">
+			<param action="param.getParameter" />
+		</method>
+		<method id="sms.notifyBalanceNotEnough" module="center">
+			<param action="sms.notifyBalanceNotEnough" />
+		</method>
+		<!-- 服务商 -->
+		<method id="provider.getProvider" module="center">
+			<param action="provider.getProvider" />
+		</method>
+		<!-- 商户 -->
+		<method id="merchant.getMerchant" module="center">
+			<param action="merchant.getMerchant" />
+		</method>
+		<!-- 车辆 -->
+		<method id="car.updateCar" module="center">
+			<param action="car.updateCarRealtime" />
+		</method>
+		<method id="car.getCar" module="center">
+			<param action="car.getCar" />
+		</method>
+		<!-- 车载盒子 -->
+		<method id="box.updateBox" module="center">
+			<param action="box.updateBoxRealtime" />
+		</method>
+		<method id="box.getBox" module="center">
+			<param action="box.getBox" />
+		</method>
+		<!-- 租车订单 -->
+		<method id="ercar.order.addOrder" module="center">
+			<param action="ercar.order.addOrder" />
+		</method>
+		<method id="ercar.order.updateOrder" module="center">
+			<param action="ercar.order.updateOrder" />
+		</method>
+		<!-- 对账结算 -->
+		<method id="bill.getBillList" module="center">
+			<param action="bill.getBillList" />
+		</method>
+		<method id="bill.getBill" module="center">
+			<param action="bill.getBill" />
+		</method>
+		<!-- 停车流程 -->
+		<method id="road.park.getBerthStatus" module="center">
+			<param action="road.park.getBerthStatus" />
+		</method>
+		<method id="road.park.applyPark" module="center">
+			<param action="road.park.applyPark" />
+		</method>
+		<!-- 停车订单 -->
+		<method id="road.order.getOrder" module="center">
+			<param action="road.order.getOrder" />
+		</method>
+		<method id="road.order.getOrderList" module="center">
+			<param action="road.order.getOrderList" />
+		</method>
+		<method id="road.refund.getRefundOrder" module="center">
+			<param action="road.refund.getRefundOrder" />
+		</method>
+		<method id="road.refund.getRefundOrderList" module="center">
+			<param action="road.refund.getRefundOrderList" />
+		</method>
+	</methods>
+</route>

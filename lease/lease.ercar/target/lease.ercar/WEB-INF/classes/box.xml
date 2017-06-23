@@ -1,0 +1,45 @@
+<dataset>
+   <!-- 车载盒子 -->
+   <sql name="addBox" memo="新增车载盒子信息">
+       INSERT INTO ercar_box(id,box_no,car_id,use_date,isvalid) VALUES(?,?,?,?,1)
+   </sql>
+   <sql name="getBox" memo="获取车载盒子信息">
+       SELECT b.box_no, b.use_date,b.status, b.network,b.start, b.longitude, b.latitude, b.lasttime, b.dynamic_code,b.address,
+	          c.id car_id,c.car_plate,c.brand car_brand,c.status car_status,c.car_no, c.merchant_id 
+           FROM ercar_box b INNER JOIN ercar_car c ON b.car_id = c.id
+           WHERE b.isvalid = 1 $dynamicsql
+   </sql>
+   <sql name="updateBox" memo="修改车载盒子信息">
+       UPDATE ercar_box SET box_no = ?, car_id = ? $dynamicsql WHERE isvalid = 1 AND id = ?
+   </sql>
+   <sql name="getBoxList" memo="获取车载盒子信息列表">
+       SELECT b.id box_id, b.box_no, b.use_date, b.network,b.start, b.status, b.dynamic_code,b.address,
+	          c.id car_id,c.car_plate , c.merchant_id 
+           FROM ercar_box b INNER JOIN ercar_car c ON b.car_id = c.id
+           WHERE b.isvalid = 1 $dynamicsql ORDER BY use_date DESC
+   </sql>
+   <sql name="updateBoxRealtime" memo="车载盒子实时信息更新">
+       UPDATE ercar_box SET $dynamicsql WHERE isvalid = 1 AND box_no = ?
+   </sql>   
+   <sql name="getBoxNetwork" memo="查询盒子联网状态">
+       SELECT b.network ,COUNT(b.id) network_count 
+           FROM ercar_box b INNER JOIN ercar_car c ON b.car_id = c.id  
+           WHERE b.isvalid = 1 $dynamicsql GROUP BY b.network ORDER BY b.network DESC
+   </sql>   
+   <sql name="getBoxStatus" memo="查询盒子设备状态">
+       SELECT b.status ,COUNT(b.id) status_count 
+           FROM ercar_box b INNER JOIN ercar_car c ON b.car_id = c.id  
+           WHERE b.isvalid = 1 $dynamicsql GROUP BY b.status ORDER BY b.status DESC
+   </sql>   
+   <sql name="getBoxByNo" memo="获取盒子信息通过盒子编码">
+        SELECT b.id box_id, b.box_no, b.use_date, b.network,b.start, b.longitude, b.latitude, b.lasttime, b.dynamic_code,b.address
+           FROM ercar_box b
+           WHERE b.isvalid = 1 AND b.box_no = ? $dynamicsql
+   </sql>   
+   <sql name="getBoxByCarId" memo="获取盒子信息通过车辆ID">
+        SELECT b.id box_id, b.box_no, b.use_date, b.network,b.start, b.longitude, b.latitude, b.lasttime, b.dynamic_code,b.address, b.car_id
+           FROM ercar_box b
+           WHERE b.isvalid = 1 AND b.car_id = ? $dynamicsql
+   </sql>   
+   
+</dataset>

@@ -1,0 +1,5 @@
+<dataset>
+	<sql name="getBankList" memo="获取银行列表">
+		SELECT id AS bank_id,bank_no,bank_name FROM bank WHERE isvalid = 1 $dynamicsql
+	</sql>
+</dataset>

@@ -1,0 +1,20 @@
+<dataset>
+	<sql name="getOrderTotal" memo="获取订单累计统计信息">
+		SELECT COUNT(id) AS order_count,IFNULL(SUM(should_pay),0) AS order_amount,IFNULL(SUM(actual_duration),0) AS duration
+		FROM road_order WHERE isvalid = 1 AND status = 2 $dynamicsql
+	</sql>
+
+	<sql name="getOrderAnalysis" memo="获取订单停车次数和收费数据集合">
+		SELECT COUNT(id) AS order_count,IFNULL(SUM(should_pay),0) AS order_amount, FROM_UNIXTIME(createtime/1000, '%Y%m%d') AS order_date
+		FROM road_order
+		WHERE isvalid = 1 $dynamicsql
+		GROUP BY order_date
+	</sql>
+
+	<sql name="getOrderFeeTop" memo="获取路段收费统计信息">
+		SELECT section,IFNULL(SUM(should_pay),0) AS total_fee
+		FROM road_order 
+		WHERE isvalid = 1 $dynamicsql
+		GROUP BY section ORDER BY total_fee LIMIT 10
+	</sql>
+</dataset>

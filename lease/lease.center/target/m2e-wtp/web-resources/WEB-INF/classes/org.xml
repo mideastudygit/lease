@@ -1,0 +1,24 @@
+<dataset>
+	<sql name="getOrgList" memo="获取组织机构列表">
+		SELECT o.id AS org_id,o.sys_id,s.sys_code,s.sys_name,o.org_name,o.org_code,o.easy_name,o.contacts,o.tel,o.phone,o.email,o.address,o.sort_num,o.status,o.createtime AS create_time,o.updatetime AS update_time
+		FROM organization o
+		LEFT JOIN system s ON s.id = o.sys_id AND s.isvalid = 1
+		WHERE o.isvalid = 1 $dynamicsql ORDER BY o.status DESC,o.sort_num
+	</sql>
+	<sql name="addOrg" memo="新增组织机构信息">
+		INSERT INTO organization (id,sys_id,org_name,org_code,easy_name,contacts,tel,phone,email,address,sort_num,status,creator,isvalid) VALUES
+		(?,?,?,?,?,?,?,?,?,?,?,1,?,1)
+	</sql>
+	<sql name="getOrg" memo="获取组织机构信息">
+		SELECT o.id AS org_id,o.sys_id,s.sys_code,s.sys_name,o.org_name,o.org_code,o.easy_name,o.contacts,o.tel,o.phone,o.email,o.address,o.sort_num,o.status,o.createtime AS create_time,o.updatetime AS update_time 
+		FROM organization o
+		LEFT JOIN system s ON s.id = o.sys_id AND s.isvalid = 1
+		WHERE o.isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateOrg" memo="修改组织机构信息">
+		UPDATE organization SET org_name = ?, org_code = ?, easy_name = ?, contacts = ?, tel = ?, phone = ?, email =?, address =?, sort_num =? WHERE id =?
+	</sql>
+	<sql name="enableOrg" memo="禁用组织机构">
+		UPDATE organization SET status = ? WHERE id = ?
+	</sql>
+</dataset>

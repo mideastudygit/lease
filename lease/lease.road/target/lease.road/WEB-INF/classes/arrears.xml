@@ -1,0 +1,27 @@
+<dataset>
+	<sql name="addArrearsOrder" memo="批量添加欠费订单">
+		INSERT INTO arrears_order (id,order_id,merchant_id,arrears_amount,arrears_status,provider_order_id,provider_arrears_id,provider_arrears_code,arrears_time,createtime,updatetime,isvalid)
+		VALUES(?,?,?,?,?,?,?,?,?,?,?,1)
+	</sql>
+
+	<sql name="getArrearsList" memo="获取欠费列表">
+		SELECT r.id AS arrears_id,r.order_id,r.arrears_amount,r.arrears_status,r.pay_time,r.createtime AS create_time,r.updatetime AS update_time,r.creator,
+		o.should_pay,o.actual_pay,o.actual_duration,o.area,o.section,o.canton,o.car_plate,o.berth_code,o.merchant_id,o.provider_order_id,o.provider_id,o.ticket,o.createtime AS order_time
+		FROM arrears_order r 
+		LEFT JOIN road_order o ON r.order_id = o.id AND o.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql 
+		ORDER BY r.updatetime DESC
+	</sql>
+
+	<sql name="updateArrearsOrderStatus" memo="修改欠费订单状态">
+		UPDATE arrears_order SET arrears_status = ?,pay_time = ?,updatetime = ? WHERE id = ?
+	</sql>
+
+	<sql name="getArrearsOrder" memo="获取欠费详情">
+		SELECT r.id AS arrears_id,r.order_id,r.merchant_id,r.arrears_amount,r.arrears_status,r.provider_order_id,r.provider_arrears_id,r.provider_arrears_code,r.pay_time,r.createtime AS create_time,r.updatetime AS update_time,r.creator,
+		o.ticket,o.actual_duration,o.area,o.section,o.canton,o.car_plate,o.berth_code,o.provider_id,o.createtime AS order_time
+		FROM arrears_order r 
+		LEFT JOIN road_order o ON r.order_id = o.id AND o.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql
+	</sql>
+</dataset>

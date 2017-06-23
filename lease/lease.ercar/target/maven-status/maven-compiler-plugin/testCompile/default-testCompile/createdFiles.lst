@@ -1,0 +1,5 @@
+com\ercar\service\BoxServiceTest.class
+com\ercar\control\BoxControlTest.class
+com\ercar\control\OrderControlTest.class
+com\ercar\service\CarServiceTest.class
+com\ercar\service\OrderServiceTest.class

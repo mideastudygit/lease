@@ -1,0 +1,32 @@
+<dataset>
+	<sql name="getOrderList" memo="获取订单列表">
+		SELECT id AS order_id,ticket,berth_code,car_plate,canton,area,section,should_pay,actual_pay,start_park_time,end_park_time,start_time,end_time,
+		apply_time,apply_duration,actual_duration,status,apply_way,pay_type,provider_order_id,merchant_id,provider_id,createtime AS create_time,updatetime AS update_time
+		FROM road_order 
+		WHERE isvalid = 1 $dynamicsql 
+		ORDER BY createtime DESC
+	</sql>
+	
+	<sql name="getOrder" memo="获取订单信息">
+		SELECT id AS order_id,ticket,berth_code,car_plate,canton,area,section,should_pay,actual_pay,start_park_time,end_park_time,start_time,end_time,
+		apply_time,apply_duration,actual_duration,status,apply_way,pay_type,provider_order_id,merchant_id,provider_id,createtime AS create_time,updatetime AS update_time
+		FROM road_order 
+		WHERE isvalid = 1 $dynamicsql
+	</sql>
+	
+	<sql name="batchUpdateRoadOrder" memo="批量修改订单信息">
+		UPDATE road_order SET berth_code=?,canton=?,area=?,section=?,should_pay=?,actual_pay=?,start_park_time=?,end_park_time=?,start_time=?,end_time=?,
+		apply_duration=?,actual_duration=?,updatetime=?
+		WHERE provider_order_id=? AND isvalid = 1
+	</sql>
+
+	<sql name="addOrder" memo="添加订单信息">
+		INSERT INTO road_order (id,ticket,berth_code,car_plate,status,pay_type,provider_order_id,merchant_id,provider_id,isvalid)
+		VALUES (?,?,?,?,1,?,?,?,?,1)
+	</sql>
+
+	<sql name="updateOrder" memo="修改订单信息">
+		UPDATE road_order SET updatetime = ? $dynamicsql 
+		WHERE provider_order_id = ? AND isvalid = 1
+	</sql>
+</dataset>

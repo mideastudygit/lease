@@ -1,0 +1,16 @@
+<dataset>
+   <sql name="getProviderList" memo="获取供应商列表">
+		SELECT id AS provider_id,provider_name,provider_code,provider_type,tel,app_id,app_secret,password,clazz,city,createtime AS create_time,updatetime AS update_time
+		FROM provider WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="addProvider" memo="添加供应商信息">
+		INSERT INTO provider (id,provider_name,provider_code,provider_type,tel,app_id,app_secret,password,clazz,city,creator,isvalid) VALUES (?,?,?,?,?,?,?,?,?,?,?,1)
+	</sql>
+	<sql name="getProvider" memo="获取供应商信息">
+		SELECT id AS provider_id,provider_name,provider_code,provider_type,tel,app_id,app_secret,password,clazz,city,createtime AS create_time,updatetime AS update_time
+		FROM provider WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateProvider" memo="更改供应商信息">
+		UPDATE provider SET provider_name=?,provider_code=?,provider_type=?,tel=?,app_id=?,app_secret=?,password=?,clazz=?,city=?,updatetime=? WHERE id=?
+	</sql>
+</dataset>

@@ -1,0 +1,304 @@
+<!-- 路由映射关系配置 -->
+<route>
+	<modules>
+		<module name="center" url="center.url" />
+	</modules>
+
+	<methods>
+		<!-- 参数管理 -->
+		<method id="param.addParam" module="center">
+			<param action="param.addParam" />
+		</method>
+		<method id="param.getParamList" module="center">
+			<param action="param.getParamList" />
+		</method>
+		<method id="param.getParam" module="center">
+			<param action="param.getParam" />
+		</method>
+		<method id="param.getParameterList" module="center">
+			<param action="param.getParameterList" />
+		</method>
+		<method id="param.addParameter" module="center">
+			<param action="param.addParameter" />
+		</method>
+		<method id="param.getParameter" module="center">
+			<param action="param.getParameter" />
+		</method>
+		<method id="param.updateParameter" module="center">
+			<param action="param.updateParameter" />
+		</method>
+		<method id="param.enableParameter" module="center">
+			<param action="param.enableParameter" />
+		</method>
+		<!-- 资源管理 -->
+		<method id="resource.getResourceList" module="center">
+			<param action="resource.getResourceList" />
+		</method>
+		<method id="resource.addResource" module="center">
+			<param action="resource.addResource" />
+		</method>
+		<method id="resource.getResource" module="center">
+			<param action="resource.getResource" />
+		</method>
+		<method id="resource.updateResource" module="center">
+			<param action="resource.updateResource" />
+		</method>
+		<method id="resource.enableResource" module="center">
+			<param action="resource.enableResource" />
+		</method>
+		<!-- 角色管理 -->
+		<method id="role.getRoleList" module="center">
+			<param action="role.getRoleList" />
+		</method>
+		<method id="role.addRole" module="center">
+			<param action="role.addRole" />
+		</method>
+		<method id="role.getRole" module="center">
+			<param action="role.getRole" />
+		</method>
+		<method id="role.updateRole" module="center">
+			<param action="role.updateRole" />
+		</method>
+		<method id="role.enableRole" module="center">
+			<param action="role.enableRole" />
+		</method>
+		<method id="role.getRoleResourceList" module="center">
+			<param action="role.getRoleResourceList" />
+		</method>
+		<method id="role.addRoleResource" module="center">
+			<param action="role.addRoleResource" />
+		</method>
+		<method id="role.delRoleResource" module="center">
+			<param action="role.delRoleResource" />
+		</method>
+		<!-- 机构管理 -->
+		<method id="org.getOrgList" module="center">
+			<param action="org.getOrgList" />
+		</method>
+		<method id="org.addOrg" module="center">
+			<param action="org.addOrg" />
+		</method>
+		<method id="org.getOrg" module="center">
+			<param action="org.getOrg" />
+		</method>
+		<method id="org.updateOrg" module="center">
+			<param action="org.updateOrg" />
+		</method>
+		<method id="org.enableOrg" module="center">
+			<param action="org.enableOrg" />
+		</method>
+		<!-- 部门管理 -->
+		<method id="dept.getDeptList" module="center">
+			<param action="dept.getDeptList" />
+		</method>
+		<method id="dept.addDept" module="center">
+			<param action="dept.addDept" />
+		</method>
+		<method id="dept.getDept" module="center">
+			<param action="dept.getDept" />
+		</method>
+		<method id="dept.updateDept" module="center">
+			<param action="dept.updateDept" />
+		</method>
+		<method id="dept.enableDept" module="center">
+			<param action="dept.enableDept" />
+		</method>
+		<!-- 用户管理 -->
+		<method id="user.getUserList" module="center">
+			<param action="user.getUserList" />
+		</method>
+		<method id="user.addUser" module="center">
+			<param action="user.addUser" />
+		</method>
+		<method id="user.getUser" module="center">
+			<param action="user.getUser" />
+		</method>
+		<method id="user.updateUser" module="center">
+			<param action="user.updateUser" />
+		</method>
+		<method id="user.enableUser" module="center">
+			<param action="user.enableUser" />
+		</method>
+		<method id="user.getUserResource" module="center">
+			<param action="user.getUserResource" />
+		</method>
+		<method id="user.updateUserPassword" module="center">
+			<param action="user.updateUserPassword" />
+		</method>
+		<method id="user.resetUserPassword" module="center">
+			<param action="user.resetUserPassword" />
+		</method>
+		<method id="user.userLogin" module="center">
+			<param action="user.userLogin" />
+		</method>
+		<method id="user.getUserType" module="center">
+			<param action="user.getUserType" />
+		</method>
+		<!-- 服务商管理 -->
+		<method id="provider.getProviderList" module="center">
+			<param action="provider.getProviderList" />
+		</method>
+		<method id="provider.addProvider" module="center">
+			<param action="provider.addProvider" />
+		</method>
+		<method id="provider.getProvider" module="center">
+			<param action="provider.getProvider" />
+		</method>
+		<method id="provider.updateProvider" module="center">
+			<param action="provider.updateProvider" />
+		</method>
+		<!-- 商户管理 -->
+		<method id="merchant.getMerchantList" module="center">
+			<param action="merchant.getMerchantList" />
+		</method>
+		<method id="merchant.addMerchant" module="center">
+			<param action="merchant.addMerchant" />
+		</method>
+		<method id="merchant.getMerchant" module="center">
+			<param action="merchant.getMerchant" />
+		</method>
+		<method id="merchant.updateMerchant" module="center">
+			<param action="merchant.updateMerchant" />
+		</method>
+		<method id="merchant.enableMerchant" module="center">
+			<param action="merchant.enableMerchant" />
+		</method>
+		<!-- 充值记录管理 -->
+		<method id="recharge.getRechargeList" module="center">
+			<param action="recharge.getRechargeList" />
+		</method>
+		<method id="recharge.addRechargeRecord" module="center">
+			<param action="recharge.addRecharge" />
+		</method>
+		<method id="recharge.getProviderRechargeList" module="center">
+			<param action="recharge.getProviderRechargeList" />
+		</method>
+		<!-- 车辆管理 -->
+		<method id="car.getCarList" module="center">
+			<param action="car.getCarList" />
+		</method>
+		<method id="car.addCar" module="center">
+			<param action="car.addCar" />
+		</method>
+		<method id="car.getCar" module="center">
+			<param action="car.getCar" />
+		</method>
+		<method id="car.updateCar" module="center">
+			<param action="car.updateCar" />
+		</method>
+		<method id="car.getCarPosition" module="center">
+			<param action="car.getCarPosition" />
+		</method>
+		<method id="car.getCarUseStatistics" module="center">
+			<param action="car.getCarUseStatistics" />
+		</method>
+		<!-- 车载盒子管理 -->
+		<method id="box.getBoxList" module="center">
+			<param action="box.getBoxList" />
+		</method>
+		<method id="box.addBox" module="center">
+			<param action="box.addBox" />
+		</method>
+		<method id="box.getBox" module="center">
+			<param action="box.getBox" />
+		</method>
+		<method id="box.updateBox" module="center">
+			<param action="box.updateBox" />
+		</method>
+		<method id="box.getBoxUseStatistics" module="center">
+			<param action="box.getBoxUseStatistics" />
+		</method>
+		<!-- 租车订单 -->
+		<method id="ercar.order.getOrderList" module="center">
+			<param action="ercar.order.getOrderList" />
+		</method>
+		<method id="ercar.order.getOrder" module="center">
+			<param action="ercar.order.getOrder" />
+		</method>
+		<method id="ercar.order.getTodayCount" module="center"><!-- 今日数据统计 -->
+			<param action="ercar.order.getTodayCount" />
+		</method>
+		<method id="ercar.order.getOrderAnalysis" module="center"><!-- 租车收费数据分析 -->
+			<param action="ercar.order.getOrderAnalysis" />
+		</method>
+		<method id="ercar.order.getRoad" module="center"><!-- 本月收入前十路段统计 -->
+			<param action="ercar.order.getRoad" />
+		</method>
+		<method id="ercar.order.getMonthCount" module="center"><!-- 当月数据统计 -->
+			<param action="ercar.order.getMonthCount" />
+		</method>
+		<!-- 停车订单 -->
+		<method id="road.order.getOrderList" module="center">
+			<param action="road.order.getOrderList" />
+		</method>
+		<method id="road.order.getOrder" module="center">
+			<param action="road.order.getOrder" />
+		</method>
+		<method id="road.order.getFinishedOrderList" module="center">
+			<param action="road.order.getFinishedOrderList" />
+		</method>
+		<!-- 补缴单 -->
+		<method id="road.arrears.getArrearsOrderList" module="center">
+			<param action="road.arrears.getArrearsOrderList" />
+		</method>
+		<method id="road.arrears.getArrearsOrder" module="center">
+			<param action="road.arrears.getArrearsOrder" />
+		</method>
+		<method id="road.arrears.applyPayArrears" module="center">
+			<param action="road.arrears.applyPayArrears" />
+		</method>
+		<!-- 路外退费单 -->
+		<method id="road.refund.getRefundOrderList" module="center">
+			<param action="road.refund.getRefundOrderList" />
+		</method>
+		<method id="road.refund.getRefundOrder" module="center">
+			<param action="road.refund.getRefundOrder" />
+		</method>
+		<method id="road.refund.applyRefund" module="center">
+			<param action="road.refund.applyRefund" />
+		</method>
+		<!-- 获取银行列表 -->
+		<method id="bank.getBankList" module="center">
+			<param action="bank.getBankList" />
+		</method>
+		<!-- 路边网点位置分布 -->
+		<method id="road.workbench.getNearbyBerthList" module="center">
+			<param action="road.workbench.getNearbyBerthList" />
+		</method>
+		<method id="road.workbench.getSectionList" module="center">
+			<param action="road.workbench.getSectionList" />
+		</method>
+		<!-- 停车业务总览 -->
+		<method id="road.workbench.getOrderTotal" module="center"><!-- 今日停车数据统计 -->
+			<param action="road.workbench.getOrderTotal" />
+		</method>
+		<method id="road.workbench.getBerthUseTotal" module="center"><!-- 路边泊位使用统计 -->
+			<param action="road.workbench.getBerthUseTotal" />
+		</method>
+		<method id="road.workbench.getOrderAnalysis" module="center"><!-- 路边停车收费分析 -->
+			<param action="road.workbench.getOrderAnalysis" />
+		</method>
+		<method id="road.workbench.getOrderFeeTop" module="center"><!-- 路段收入统计排序 -->
+			<param action="road.workbench.getOrderFeeTop" />
+		</method>
+		<method id="road.workbench.getOrderMonthTotal" module="center"><!-- 当月停车数据统计 -->
+			<param action="road.workbench.getOrderMonthTotal" />
+		</method>
+		<!-- 对账 -->
+		<method id="bill.getBillList" module="center">
+			<param action="bill.getBillList" />
+		</method>
+		<method id="bill.getBill" module="center">
+			<param action="bill.getBill" />
+		</method>
+		<method id="bill.updateBill" module="center">
+			<param action="bill.updateBill" />
+		</method>
+		<method id="bill.getBillDataList" module="center">
+			<param action="bill.getBillDataList" />
+		</method>
+		<method id="bill.repeatBill" module="center">
+			<param action="bill.repeatBill" />
+		</method>
+	</methods>
+</route>

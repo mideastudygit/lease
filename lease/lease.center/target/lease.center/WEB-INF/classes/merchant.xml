@@ -1,0 +1,37 @@
+<dataset>
+	<sql name="getMerchantList" memo="获取商户列表">
+		SELECT b.merchant_id,m.merchant_name,m.card_name,m.card_no,m.contact_number,m.status,m.first_amount,m.alarm_balance,m.balance,m.buss_license,m.app_id,m.push_url,m.admin_name,m.tel,phone,m.address,
+		m.enable_time,m.createtime,m.updatetime,b.bank_name,b.account_no,b.account_name,b.bill_type,b.bill_cycle,b.bill_start
+		FROM merchant m INNER JOIN merchant_bill b ON m.id = b.merchant_id AND b.isvalid=1
+		WHERE m.isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="addMerchant" memo="添加商户信息">
+		INSERT INTO merchant (id,merchant_name,card_name,card_no,contact_number,status,first_amount,alarm_balance,balance,buss_license,app_id,app_secret,push_url,admin_name,tel,phone,address,enable_time,isvalid)
+		VALUES (?,?,?,?,?,1,?,?,?,?,?,?,?,?,?,?,?,?,1)
+	</sql>
+	<sql name="getMerchant" memo="获取商户信息">
+		SELECT b.merchant_id,m.merchant_name,m.card_name,m.card_no,m.contact_number,m.status,m.first_amount,m.alarm_balance,m.balance,m.buss_license,m.app_id,m.app_secret,m.push_url,m.admin_name,m.tel,phone,m.address,
+		m.enable_time,m.createtime,m.updatetime,b.bank_name,b.account_no,b.account_name,b.bill_type,b.bill_cycle,b.bill_start
+		FROM merchant m INNER JOIN merchant_bill b ON m.id = b.merchant_id AND b.isvalid=1
+		WHERE m.isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="checkMerchant" memo="获取商户信息">
+		SELECT COUNT(id) AS num FROM merchant WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateMerchant" memo="更改商户信息">
+		UPDATE merchant SET merchant_name=?,card_name=?,card_no=?,contact_number=?,alarm_balance=?,buss_license=?,app_id=?,app_secret=?,push_url=?,admin_name=?,tel=?,phone=?,address=?,updatetime=? WHERE isvalid=1 AND id=? 
+	</sql>
+	<sql name="enableMerchant" memo="启用/禁用商户信息">
+		UPDATE merchant SET status=?,updatetime=? WHERE isvalid=1 AND id=? 
+	</sql>
+	<sql name="updateMerchantBalance" memo="更改商户余额信息">
+		UPDATE merchant SET balance=(balance+(?)),updatetime=? WHERE isvalid=1 AND id=? 
+	</sql>
+	<!-- 商户对账信息 -->
+	<sql name="addMerchantBill" memo="添加商户对账信息">
+		INSERT INTO merchant_bill (id,merchant_id,bank_name,account_no,account_name,bill_type,bill_cycle,bill_start,isvalid) VALUES (?,?,?,?,?,?,?,?,1)
+	</sql>
+	<sql name="updateMerchantBill" memo="更改商户对账信息">
+		UPDATE merchant_bill SET bank_name=?,account_no=?,account_name=?,bill_type=?,bill_cycle=?,updatetime=? WHERE isvalid=1 AND merchant_id=?
+	</sql>
+</dataset>

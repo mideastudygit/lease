@@ -1,0 +1,170 @@
+<!-- 路由映射关系配置 -->
+<route>
+	<modules>
+		<module name="road" url="road.url" />
+		<module name="ercar" url="ercar.url" />
+		<module name="open" url="open.url" />
+	</modules>
+
+	<methods>
+		<!-- 路外订单推送 -->
+		<method id="road.push.endOrder" module="open">
+			<param action="road.push.endOrder" />
+		</method>
+		<!-- 充值记录 -->
+		<method id="road.recharge.getRechargeList" module="road">
+			<param action="road.recharge.getRoadRechargeList" />
+		</method>
+		<!-- 对账结算 -->
+		<method id="road.bill.getBillList" module="road">
+			<param action="road.bill.getMerchantBillList" />
+		</method>
+		<method id="road.bill.getBill" module="road">
+			<param action="road.bill.getMerchantBill" />
+		</method>
+		<method id="road.bill.updateBill" module="road">
+			<param action="road.bill.updateMerchantBill" />
+		</method>
+		<method id="road.bill.getBillDataList" module="road">
+			<param action="road.bill.getBillDataList" />
+		</method>
+		<method id="road.bill.addSystemBill" module="road">
+			<param action="road.bill.addSystemBill" />
+		</method>
+		<method id="road.bill.addMerchantBill" module="road">
+			<param action="road.bill.addMerchantBill" />
+		</method>
+		<method id="road.bill.repeatSystemBill" module="road">
+			<param action="road.bill.repeatSystemBill" />
+		</method>
+		<!-- 停车流程 -->
+		<method id="road.park.getBerthStatus" module="road">
+			<param action="road.park.getBerthStatus" />
+		</method>
+		<method id="road.park.applyPark" module="road">
+			<param action="road.park.applyPark" />
+		</method>
+		<!-- 车辆信息 -->
+		<method id="car.getCarList" module="ercar">
+			<param action="car.getCarList" />
+		</method>
+		<method id="car.addCar" module="ercar">
+			<param action="car.addCar" />
+		</method>
+		<method id="car.getCar" module="ercar">
+			<param action="car.getCar" />
+		</method>
+		<method id="car.updateCar" module="ercar">
+			<param action="car.updateCar" />
+		</method>
+		<method id="car.updateCarRealtime" module="ercar">
+			<param action="car.updateCarRealtime" />
+		</method>
+		<method id="car.getCarPosition" module="ercar">
+			<param action="car.getCarPosition" />
+		</method>
+		<method id="car.getCarUseStatistics" module="ercar">
+			<param action="car.getCarRealtime" />
+		</method>
+		<!-- 车载盒子信息 -->
+		<method id="box.getBoxList" module="ercar">
+			<param action="box.getBoxList" />
+		</method>
+		<method id="box.addBox" module="ercar">
+			<param action="box.addBox" />
+		</method>
+		<method id="box.getBox" module="ercar">
+			<param action="box.getBox" />
+		</method>
+		<method id="box.updateBox" module="ercar">
+			<param action="box.updateBox" />
+		</method>
+		<method id="box.updateBoxRealtime" module="ercar">
+			<param action="box.updateBoxRealtime" />
+		</method>
+		<method id="box.getBoxUseStatistics" module="ercar">
+			<param action="box.getBoxRealtime" />
+		</method>
+		<!-- 租车订单 -->
+		<method id="ercar.order.getOrderList" module="ercar">
+			<param action="ercar.order.getOrderList" />
+		</method>
+		<method id="ercar.order.getOrder" module="ercar">
+			<param action="ercar.order.getOrder" />
+		</method>
+		<method id="ercar.order.addOrder" module="ercar">
+			<param action="ercar.order.addOrder" />
+		</method>
+		<method id="ercar.order.updateOrder" module="ercar">
+			<param action="ercar.order.updateOrderRealtime" />
+		</method>
+		<method id="ercar.order.getTodayCount" module="ercar"><!-- 今日数据统计 -->
+			<param action="ercar.order.getTodayCount" />
+		</method>
+		<method id="ercar.order.getOrderAnalysis" module="ercar"><!-- 租车收费数据分析 -->
+			<param action="ercar.order.getOrderAnalysis" />
+		</method>
+		<method id="ercar.order.getRoad" module="ercar"><!-- 本月收入前十路段统计 -->
+			<param action="ercar.order.getRoad" />
+		</method>
+		<method id="ercar.order.getMonthCount" module="ercar"><!-- 当月数据统计 -->
+			<param action="ercar.order.getMonthCount" />
+		</method>
+		<method id="ercar.order.getCarUseRate" module="ercar">
+			<param action="ercar.order.getCarUseRate" />
+		</method>
+		<!-- 路外停车订单 -->
+		<method id="road.order.getOrderList" module="road">
+			<param action="road.order.getOrderList" />
+		</method>
+		<method id="road.order.getFinishedOrderList" module="road">
+			<param action="road.order.getFinishedOrderList" />
+		</method>
+		<method id="road.order.getOrder" module="road">
+			<param action="road.order.getOrder" />
+		</method>
+		<!-- 路外补缴单 -->
+		<method id="road.arrears.getArrearsOrderList" module="road">
+			<param action="road.arrears.getArrearsOrderList" />
+		</method>
+		<method id="road.arrears.getArrearsOrder" module="road">
+			<param action="road.arrears.getArrearsOrder" />
+		</method>
+		<method id="road.arrears.applyPayArrears" module="road">
+			<param action="road.arrears.applyPayArrears" />
+		</method>
+		<!-- 路外退费 -->
+		<method id="road.refund.getRefundOrder" module="road">
+			<param action="road.refund.getRefundOrder" />
+		</method>
+		<method id="road.refund.getRefundOrderList" module="road">
+			<param action="road.refund.getRefundOrderList" />
+		</method>
+		<method id="road.refund.applyRefund" module="road">
+			<param action="road.refund.applyRefund" />
+		</method>
+		<!-- 路边网点位置分布 -->
+		<method id="road.workbench.getNearbyBerthList" module="road">
+			<param action="road.workbench.getNearbyBerthList" />
+		</method>
+		<method id="road.workbench.getSectionList" module="road">
+			<param action="road.workbench.getSectionList" />
+		</method>
+		<!-- 停车业务总览 -->
+		<method id="road.workbench.getOrderTotal" module="road"><!-- 今日停车数据统计 -->
+			<param action="road.workbench.getOrderTotal" />
+		</method>
+		<method id="road.workbench.getBerthUseTotal" module="road"><!-- 路边泊位使用统计 -->
+			<param action="road.workbench.getBerthUseTotal" />
+		</method>
+		<method id="road.workbench.getOrderAnalysis" module="road"><!-- 路边停车收费分析 -->
+			<param action="road.workbench.getOrderAnalysis" />
+		</method>
+		<method id="road.workbench.getOrderFeeTop" module="road"><!-- 路段收入统计排序 -->
+			<param action="road.workbench.getOrderFeeTop" />
+		</method>
+		<method id="road.workbench.getOrderMonthTotal" module="road"><!-- 当月停车数据统计 -->
+			<param action="road.workbench.getOrderMonthTotal" />
+		</method>
+	</methods>
+</route>

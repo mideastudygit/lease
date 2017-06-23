@@ -1,0 +1,30 @@
+<dataset>
+	<sql name="getParamList" memo="获取参数类型列表">
+		SELECT id AS param_id,para_name,para_code,creator,createtime,updatetime
+		FROM param WHERE isvalid = 1
+	</sql>
+	<sql name="addParam" memo="添加参数类型">
+		INSERT INTO param (id,para_name,para_code,creator,isvalid) VALUES (?,?,?,?,1)
+	</sql>
+	<sql name="getParam" memo="获取参数类型信息">
+		SELECT id AS param_id,para_name,para_code,creator,createtime,updatetime
+		FROM param WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="getParameterList" memo="获取参数值列表">
+		SELECT id AS parameter_id,para_code,para_name,para_value,remark,status,creator,createtime,updatetime
+		FROM parameter WHERE isvalid = 1 $dynamicsql ORDER BY para_value ASC
+	</sql>
+	<sql name="addParameter" memo="添加参数值">
+		INSERT INTO parameter (id,para_code,para_name,para_value,status,creator,isvalid) VALUES (?,?,?,?,1,?,1)
+	</sql>
+	<sql name="getParameter" memo="获取参数值信息">
+		SELECT id AS parameter_id,para_code,para_name,para_value,status,creator,createtime,updatetime 
+		FROM parameter WHERE isvalid=1 $dynamicsql
+	</sql>
+	<sql name="updateParameter" memo="更改参数值信息">
+		UPDATE parameter SET para_code=?,para_name=?,para_value=?,status=?,creator=?,remark=?,updatetime=? WHERE id=?
+	</sql>
+	<sql name="enableParameter" memo="启用/禁用参数值">
+		UPDATE parameter SET status=?,updatetime=? WHERE id=?
+	</sql>
+</dataset>

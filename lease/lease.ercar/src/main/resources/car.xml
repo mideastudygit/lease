@@ -1,0 +1,35 @@
+<dataset>
+    <!-- 车辆管理 -->
+    <sql name="addCar" memo="新增车辆信息">
+        INSERT INTO ercar_car(id,mer_car_id,car_plate,brand,merchant_id,use_date,branch,isvalid) VALUES(?,?,?,?,?,?,?,1)
+    </sql>
+    <sql name="getCar" memo="获取车辆信息">
+        SELECT id AS car_id,mer_car_id,car_no,car_plate,brand,status,capacity,soc,use_date,branch,lasttime,merchant_id 
+            FROM ercar_car  WHERE isvalid = 1  $dynamicsql 
+    </sql>
+    <sql name="updateCar" memo="修改车辆信息">
+        UPDATE ercar_car SET $dynamicsql WHERE isvalid = 1 AND id = ?
+    </sql>
+    <sql name="getCarList" memo="查询车辆信息列表">
+        SELECT id AS car_id,car_no,car_plate,status,capacity,soc,use_date,brand,lasttime,merchant_id 
+            FROM ercar_car WHERE isvalid = 1 $dynamicsql ORDER BY use_date DESC
+    </sql>
+    <sql name="updateCarRealtime" memo="修改车辆实时信息">
+        UPDATE ercar_car SET $dynamicsql WHERE isvalid = 1 AND car_plate = ?
+    </sql>
+    <sql name="getCarRealtime" memo="查询车辆使用状态实时数据">
+        SELECT status,COUNT(id) car_status FROM ercar_car WHERE isvalid = 1 $dynamicsql GROUP BY status ORDER BY status 
+    </sql>
+    <sql name="getCarByPlate" memo="获取车辆信息">
+        SELECT id AS car_id,car_no,car_plate,brand,status,capacity,soc,use_date,branch,lasttime,merchant_id 
+            FROM ercar_car  WHERE isvalid = 1 AND car_plate = ? $dynamicsql
+    </sql>
+    <sql name="getCarCount" memo="获取车辆总数">
+        SELECT COUNT(id) car_count FROM ercar_car WHERE isvalid = 1 $dynamicsql
+    </sql>
+    <sql name="getCarPosition" memo="查询车辆位置分布">
+        SELECT c.id car_id,c.merchant_id, c.car_no, c.car_plate, c.brand, c.status, b.address,b.longitude, b.latitude  
+            FROM ercar_car c INNER JOIN ercar_box b ON c.id = b.car_id
+            WHERE c.isvalid = 1 $dynamicsql
+    </sql>
+</dataset>

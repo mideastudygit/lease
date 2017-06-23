@@ -1,0 +1,26 @@
+<dataset>
+	<sql name="getDeptList" memo="获取部门列表">
+		SELECT d.id AS dept_id,s.id AS sys_id,s.sys_code,s.sys_name,d.org_id,o.org_code,o.org_name,d.dept_name,d.dept_code,d.easy_name,d.parent_id,d.contacts,d.tel,d.phone,d.email,d.address,d.sort_num,d.status,d.createtime AS create_time,d.updatetime AS update_time
+		FROM department d 
+		LEFT JOIN organization o ON o.id = d.org_id AND o.isvalid = 1
+   		LEFT JOIN system s ON s.id = o.sys_id AND s.isvalid = 1
+		WHERE o.isvalid = 1 $dynamicsql ORDER BY d.status DESC,d.sort_num
+	</sql>
+	<sql name="addDept" memo="新增部门信息">
+		INSERT INTO department (id,org_id,dept_name,dept_code,easy_name,parent_id,contacts,tel,phone,email,address,sort_num,status,creator,isvalid)
+		VALUES (?,?,?,?,?,?,?,?,?,?,?,?,1,?,1)
+	</sql>
+	<sql name="getDept" memo="获取部门信息">
+		SELECT d.id as dept_id,s.id AS sys_id,s.sys_code,s.sys_name,d.org_id,o.org_code,o.org_name,d.dept_name,d.dept_code,d.easy_name,d.parent_id,d.contacts,d.tel,d.phone,d.email,d.address,d.sort_num,d.status,d.createtime AS create_time,d.updatetime AS update_time
+		FROM department d
+		LEFT JOIN organization o ON o.id = d.org_id AND o.isvalid = 1
+    	LEFT JOIN system s ON s.id = o.sys_id AND s.isvalid = 1
+		WHERE d.isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateDept" memo="修改部门信息">
+		UPDATE department SET dept_name =?, dept_code =?, easy_name =?, parent_id =?, contacts =?, tel =?, phone =?, email =?, address =?, sort_num =? WHERE id =?
+	</sql>
+	<sql name="enableDept" memo="禁用部门">
+		UPDATE department SET status = ? WHERE id = ?
+	</sql>
+</dataset>

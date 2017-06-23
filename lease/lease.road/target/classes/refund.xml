@@ -1,0 +1,28 @@
+<dataset>
+	<sql name="getRefundOrderList" memo="获取退款订单列表">
+		SELECT r.id AS refund_id,r.order_id,r.merchant_id,r.refund_amount,r.refund_status,r.provider_refund_id,r.provider_refund_code,r.provider_order_id,r.refund_time,r.createtime AS create_time,r.updatetime AS update_time,
+		o.ticket,o.berth_code,o.car_plate,o.canton,o.section,o.area,o.should_pay,o.actual_pay,o.apply_duration,o.actual_duration,o.start_park_time,o.end_park_time,o.start_time,o.end_time,o.provider_id
+		FROM refund_order r 
+		LEFT JOIN road_order o ON r.order_id = o.id AND o.isvalid = 1 
+		WHERE r.isvalid = 1 $dynamicsql ORDER BY r.updatetime DESC
+	</sql>
+	<sql name="addRefundOrder" memo="批量添加退费订单">
+		INSERT INTO refund_order (id,order_id,merchant_id,refund_amount,refund_status,provider_refund_id,provider_refund_code,provider_order_id,createtime,updatetime,isvalid)
+		VALUES(?,?,?,?,?,?,?,?,?,?,1)
+	</sql>
+	<sql name="getRefundOrder" memo="获取退费详情">
+		SELECT r.id AS refund_id,r.order_id,r.merchant_id,r.refund_amount,r.refund_status,r.provider_refund_id,r.provider_refund_code,r.provider_order_id,r.refund_time,r.creator,
+		r.createtime AS create_time,r.updatetime AS update_time,o.canton,o.section,o.area,o.berth_code,o.car_plate,o.should_pay,o.actual_pay,o.actual_duration,o.ticket,o.provider_id
+		FROM refund_order r 
+		LEFT JOIN road_order o ON r.order_id = o.id AND o.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="batchGetRefundOrder" memo="批量获取退费">
+		SELECT id AS refund_id,order_id,merchant_id,refund_amount,refund_status,provider_refund_id,provider_refund_code,provider_order_id,refund_time,createtime AS create_time,updatetime AS update_time
+		FROM refund_order 
+		WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateRefundOrderStatus" memo="修改退费订单信息">
+		UPDATE refund_order SET refund_status = ?,refund_time = ?,updatetime = ? WHERE id = ? AND isvalid = 1
+	</sql>
+</dataset>

@@ -1,0 +1,50 @@
+<dataset>
+	<sql name="getMerchantBillList" memo="获取账单列表信息">
+		SELECT id AS bill_id,bill_date,start_time,end_time,status,order_count,refund_count,order_amount,refund_amount,merchant_id,createtime AS create_time,updatetime AS update_time
+		FROM merchant_bill WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="getMerchantBill" memo="获取对账单信息">
+		SELECT id AS bill_id,bill_date,start_time,end_time,status,order_count,refund_count,order_amount,refund_amount,merchant_id,createtime AS create_time,updatetime AS update_time
+		FROM merchant_bill WHERE isvalid = 1 AND id = ?
+	</sql>
+	<sql name="addMerchantBill" memo="生成商户对账单">
+		INSERT INTO merchant_bill (id,bill_date,start_time,end_time,status,order_count,refund_count,order_amount,refund_amount,merchant_id,isvalid)
+		VALUES (?,?,?,?,1,?,?,?,?,?,1)
+	</sql>
+	<sql name="updateMerchantBillStatus" memo="更改对账单状态">
+		UPDATE merchant_bill SET status = ? WHERE isvalid = 1 AND id = ?
+	</sql>
+	<sql name="updateMerchantBill" memo="更改商户对账单信息">
+		UPDATE merchant_bill SET order_count=?,refund_count=?,order_amount=?,refund_amount=?,updatetime=? WHERE merchant_id=? AND id =? AND isvalid = 1
+	</sql>
+	<sql name="getSystemBillList" memo="查询系统对账单列表">
+		SELECT id AS bill_id,bill_date,order_count,refund_count,order_amount,refund_amount,merchant_id
+		FROM system_bill WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="addSystemBill" memo="生成系统对账单">
+		INSERT INTO system_bill (id,bill_date,order_count,refund_count,order_amount,refund_amount,merchant_id,isvalid)
+		VALUES (?,?,?,?,?,?,?,1)
+	</sql>
+	<sql name="getSystemBill" memo="查询系统对账单">
+		SELECT id AS bill_id,bill_date,order_count,refund_count,order_amount,refund_amount,merchant_id
+		FROM system_bill WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateSystemBill" memo="更改系统对账单信息">
+		UPDATE system_bill SET order_count=?,refund_count=?,order_amount=?,refund_amount=?,updatetime=? WHERE merchant_id=? AND id =?
+	</sql>
+	<sql name="addOrderBillData" memo="生成订单快照">
+		INSERT INTO bill_data (id,bill_id,type,berth_code,car_plate,area,canton,section,start_park_time,end_park_time,should_pay,actual_duration,actual_pay,provider_order_id,order_id,merchant_id,start_time,end_time,createtime,updatetime,isvalid)
+		VALUES (?,?,1,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)
+	</sql>
+	<sql name="addRefundBillData" memo="生成退费单快照">
+		INSERT INTO bill_data (id,bill_id,type,berth_code,car_plate,area,canton,section,start_park_time,end_park_time,should_pay,actual_duration,actual_pay,provider_order_id,refund_amount,order_id,refund_id,merchant_id,start_time,end_time,createtime,updatetime,isvalid)
+		VALUES (?,?,2,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)
+	</sql>
+	<sql name="delBillData" memo="删除系统对账生成的订单快照">
+		DELETE FROM bill_data WHERE bill_id = ? AND merchant_id = ? AND isvalid = 1
+	</sql>
+	<sql name="getBillDataList" memo="获取账单数据">
+		SELECT id,bill_id,type,berth_code,car_plate,area,canton,section,start_park_time,end_park_time,should_pay,actual_duration,actual_pay,service_order,refund_amount,order_id,order_code,refund_id,refund_code,start_time,end_time,merchant_id
+		FROM bill_data WHERE isvalid = 1 $dynamicsql
+	</sql>
+</dataset>

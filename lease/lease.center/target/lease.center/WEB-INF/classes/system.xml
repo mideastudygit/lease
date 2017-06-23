@@ -1,0 +1,21 @@
+<dataset>
+	<sql name="getSystemList" memo="获取系统列表">
+		SELECT id AS sys_id,sys_name,sys_code,easy_name,url,contacts,tel,phone,email,address,sort_num,status,createtime,updatetime 
+		FROM system WHERE isvalid = 1 $dynamicsql 
+		ORDER BY status DESC,sort_num
+	</sql>
+	<sql name="addSystem" memo="新增系统信息">
+		INSERT INTO system (id,sys_name,sys_code,easy_name,url,contacts,tel,phone,email,address,sort_num,status,creator,isvalid) VALUES
+		(?,?,?,?,?,?,?,?,?,?,?,1,?,1)
+	</sql>
+	<sql name="getSystem" memo="获取系统信息">
+		SELECT id AS sys_id,sys_name,sys_code,easy_name,url,contacts,tel,phone,email,address,sort_num,status,createtime,updatetime 
+		FROM system WHERE isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateSystem" memo="修改系统信息">
+		UPDATE system SET sys_name = ?,sys_code = ?,easy_name = ?,url = ?,contacts = ?,tel = ?,phone = ?,email = ?,address = ?,sort_num = ? WHERE id = ?
+	</sql>
+	<sql name="enableSystem" memo="禁用系统">
+		UPDATE system SET status = ? WHERE id = ?
+	</sql>
+</dataset>

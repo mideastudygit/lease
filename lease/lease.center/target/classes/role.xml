@@ -1,0 +1,26 @@
+<dataset>
+	<sql name="getRoleList" memo="获取角色列表">
+		SELECT r.id AS role_id,r.sys_id,s.sys_name,s.sys_code,r.org_id,o.org_code,o.org_name,r.role_name,r.sort_num,r.status,r.createtime AS create_time,r.updatetime AS update_time
+		FROM role r
+		LEFT JOIN system s ON s.id = r.sys_id AND s.isvalid = 1
+		LEFT JOIN organization o ON o.id = r.org_id AND o.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql ORDER BY r.status DESC,r.sort_num
+	</sql>
+	<sql name="addRole" memo="新增角色信息">
+		INSERT INTO role (id,sys_id,org_id,role_name,sort_num,status,isvalid) VALUES
+		(?,?,?,?,?,1,1)
+	</sql>
+	<sql name="getRole" memo="获取角色信息">
+		SELECT r.id AS role_id,r.sys_id,s.sys_code,s.sys_name,r.org_id,o.org_code,o.org_name,r.role_name,r.status,r.sort_num,r.createtime AS create_time,r.updatetime AS update_time 
+		FROM role r
+		LEFT JOIN system s ON s.id = r.sys_id AND s.isvalid = 1
+		LEFT JOIN organization o ON o.id = r.org_id AND o.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateRole" memo="修改角色信息">
+		UPDATE role SET sys_id =?, org_id =?, role_name =?, sort_num =? WHERE id =?
+	</sql>
+	<sql name="enableRole" memo="禁用角色">
+		UPDATE role SET status = ? WHERE id = ?
+	</sql>
+</dataset>

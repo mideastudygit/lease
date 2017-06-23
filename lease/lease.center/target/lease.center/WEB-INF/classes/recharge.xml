@@ -1,0 +1,10 @@
+<dataset>
+	<sql name="getRechargeList" memo="获取充值记录列表">
+		SELECT r.id AS recharge_id,r.merchant_id,m.merchant_name,r.type,r.amount,r.createtime,r.updatetime,r.creator
+		FROM recharge r INNER JOIN merchant m ON r.merchant_id = m.id AND m.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql ORDER BY r.createtime DESC
+	</sql>
+	<sql name="addRecharge" memo="添加充值记录信息">
+		INSERT INTO recharge (id,merchant_id,provider_id,channel,amount,time,status,type,creator,isvalid) VALUES (?,?,?,?,?,?,?,?,?,1)
+	</sql>
+</dataset>

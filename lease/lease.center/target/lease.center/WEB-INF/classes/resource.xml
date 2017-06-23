@@ -1,0 +1,41 @@
+<dataset>
+	<sql name="getResourceList" memo="获取菜单资源列表">
+		SELECT r.id AS res_id,r.sys_id,s.sys_code,s.sys_name,r.parent_id,r.res_name,r.show_name,r.res_icon,r.status,r.res_type,r.url,r.sort_num,r.createtime,r.updatetime
+		FROM resource r
+		INNER JOIN system s ON s.id = r.sys_id AND s.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql ORDER BY r.status DESC,r.sort_num
+	</sql>
+	<sql name="addResource" memo="新增菜单资源信息">
+		INSERT INTO resource (id,sys_id,res_name,show_name,res_type,res_icon,url,parent_id,sort_num,status,isvalid) VALUES
+		(?,?,?,?,?,?,?,?,?,1,1)
+	</sql>
+	<sql name="getResource" memo="获取菜单资源信息">
+		SELECT r.id as res_id,r.sys_id,s.sys_code,s.sys_name,r.res_name,r.show_name,r.res_type,r.res_icon,r.url,r.parent_id,r.sort_num,r.status,r.creator,r.createtime,r.updatetime 
+		FROM resource r 
+		LEFT JOIN system s ON s.id = r.sys_id AND s.isvalid = 1
+		WHERE r.isvalid = 1 $dynamicsql
+	</sql>
+	<sql name="updateResource" memo="修改菜单资源信息">
+		UPDATE resource SET sys_id =?, res_name =?, show_name =?, res_type =?, res_icon =?, url =?, parent_id =?, sort_num =?,updatetime =? WHERE id =?
+	</sql>
+	<sql name="enableResource" memo="禁用菜单资源">
+		UPDATE resource SET status = ? WHERE id = ?
+	</sql>
+	<!-- 角色关联资源模块 -->
+	<sql name="getRoleResourceList" memo="获取角色关联资源列表">
+		SELECT s.id AS role_res_id,s.role_id,s.res_id,r.show_name 
+		FROM role_resource s 
+		INNER JOIN role o ON o.id = s.role_id AND o.isvalid = 1
+		INNER JOIN resource r ON r.id = s.res_id AND r.isvalid = 1
+		WHERE s.isvalid = 1 AND s.role_id = ?
+	</sql>
+	<sql name="getRoleResource" memo="查询角色关联资源">
+		SELECT id AS role_res_id,role_id,res_id FROM role_resource WHERE isvalid = 1 AND role_id = ? $dynamicsql
+	</sql>
+	<sql name="addRoleResource" memo="新增角色关联资源信息">
+		INSERT INTO role_resource (id,role_id,res_id,createtime,updatetime,isvalid) VALUES (?,?,?,?,?,1)
+	</sql>
+	<sql name="delRoleResource" memo="删除角色关联资源信息">
+		DELETE FROM role_resource WHERE role_id = ? AND res_id = ?
+	</sql>
+</dataset>

@@ -1,0 +1,39 @@
+<dataset>
+    <sql name="addOrder" memo="添加租车订单">
+		INSERT INTO ercar_order (id,mer_order_id,order_code,car_id,merchant_id,status,amount,duration,take_branch,take_berth,park_branch,park_berth,longitude,latitude,begin_time,end_time,isvalid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)
+    </sql>
+    <sql name="getAmount" memo="查询订单金额">
+		SELECT SUM(amount) amount FROM ercar_order WHERE isvalid = 1 $dynamicsql  
+	</sql>
+    <sql name="getFre" memo="查询租车次数">
+		SELECT COUNT(id) frequency FROM ercar_order WHERE isvalid = 1 $dynamicsql 
+	</sql>
+	<sql name="updateOrderRealtime" memo="租车订单实时信息更新">
+		UPDATE ercar_order SET $dynamicsql WHERE isvalid = 1 AND mer_order_id = ?
+    </sql>
+	<sql name="updateOrder" memo="修改租车订单">
+		UPDATE ercar_order SET $dynamicsql WHERE isvalid = 1 AND mer_order_id = ?
+    </sql>
+	<sql name="getOrder" memo="获取租车订单详情">
+        SELECT o.id order_id,o.mer_order_id,o.order_code,o.duration,o.amount,o.merchant_id,o.status,o.take_branch,o.park_branch,o.take_berth,o.park_berth,o.begin_time,o.end_time,c.car_no,c.car_plate,c.brand
+            FROM ercar_order o INNER JOIN ercar_car c ON o.car_id = c.id WHERE o.isvalid = 1 AND o.id = ?
+    </sql>
+	<sql name="getOrderList" memo="获取租车订单列表">
+        SELECT o.id order_id,o.status,o.duration,o.amount,o.merchant_id,o.begin_time,c.id car_id,c.id car_no,c.car_plate
+            FROM ercar_order o INNER JOIN ercar_car c ON o.car_id = c.id WHERE o.isvalid = 1 $dynamicsql  ORDER BY o.begin_time DESC 
+    </sql>
+    <sql name="getCarUseCount" memo="车辆使用统计">
+		SELECT COUNT(1) car_use_count  FROM ( SELECT car_id FROM ercar_order WHERE isvalid = 1 $dynamicsql  GROUP BY car_id ) t_order 
+	</sql>
+    <sql name="getOrderAnalysis" memo="按月份和商户查询订单数据">
+        SELECT DATE_FORMAT(FROM_UNIXTIME(begin_time/1000),'%d') days ,COUNT(1) frequency,SUM(amount) amount 
+            FROM ercar_order WHERE isvalid = 1 AND status = 2 AND DATE_FORMAT(FROM_UNIXTIME(begin_time/1000),'%Y%m') = DATE_FORMAT(FROM_UNIXTIME(?),'%Y%m')  $dynamicsql  
+            GROUP BY days ORDER BY days    
+	</sql>
+	<sql name="getRoad" memo="租车网点本月收入前十路段名称">
+	    SELECT take_branch road,SUM(amount) amount FROM ercar_order 
+            WHERE isvalid = 1 AND status = 2 AND DATE_FORMAT(FROM_UNIXTIME(begin_time/1000),'%Y%m') = DATE_FORMAT(FROM_UNIXTIME(?),'%Y%m') $dynamicsql  
+            GROUP BY take_branch ORDER BY amount LIMIT 0,10    
+	</sql>
+	
+</dataset>

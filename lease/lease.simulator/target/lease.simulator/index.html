@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<link rel="stylesheet" href="bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="bootstrap/3.3.7/css/docs.min.css">
+<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body {
+	margin: 20px;
+	font-size: 12px;
+}
+#check-berth:after {
+	content:"用户停车前泊位检查";
+}
+#apply-park:after {
+	content:"申请停车";
+}
+#get-order:after {
+	content: "停车订单查询";
+}
+#get-refund-order:after {
+	content: "退费信息查询";
+}
+#update-car:after {
+	content:"车辆实时信息";
+}
+#update-box:after {
+	content:"车载盒子实时信息";
+}
+#add-order:after {
+	content:"新增租车订单";
+}
+#update-order:after {
+	content:"租车订单实时信息";
+}
+</style>
+</head>
+<body>
+	<h2 class="text-center">分时租赁模拟器</h2>
+	<p>&nbsp;</p>
+	
+	<div class="row">
+		
+		<div class="col-md-12">
+			<div class="col-md-3">
+		
+			<div class="bs-example" id="check-berth" action="road.park.getBerthStatus">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="berth_code"
+								placeholder="输入泊位号">
+						</div>
+						
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="city"
+								placeholder="输入城市编码">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="button" class="btn btn-success">验证泊位</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			</div>
+			
+			<div class="col-md-3">
+			
+			<div class="bs-example" id="apply-park" action="road.park.applyPark">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="berth_code"
+								placeholder="输入泊位号">
+						</div>
+						
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="car_plate"
+								placeholder="输入车牌号">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="city"
+								placeholder="输入城市编码">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="ticket"
+								placeholder="输入用户标识">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="button" class="btn btn-success">申请停车</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			</div>
+
+			<div class="col-md-3">
+
+				<div class="bs-example" id="get-order" action="road.order.getOrder">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="order_id"
+									placeholder="输入订单号">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="start_time"
+									placeholder="输入开始时间">
+							</div>
+							
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="end_time"
+									placeholder="输入结束时间">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="keyword"
+									placeholder="输入关键字">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="radio">
+									<label>订单状态：</label>
+									<label> 
+										<input type="radio" name="order_status" value="1" checked>进行中
+									</label>
+									<label>
+										<input type="radio" name="order_status" value="2">已完成
+									</label>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<button type="button" class="btn btn-success">订单查询</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+			
+			
+			<div class="col-md-3">
+
+				<div class="bs-example" id="get-refund-order" action="road.refund.getRefundOrder">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="order_id"
+									placeholder="输入订单号">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="refund_id"
+									placeholder="输入退费单号">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="start_time"
+									placeholder="输入开始时间">
+							</div>
+							
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="end_time"
+									placeholder="输入结束时间">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="radio">
+									<label>退费状态：</label>
+									<label> 
+										<input type="radio" name="refund_status" value="1" checked>未退费
+									</label> 
+									<label>
+										<input type="radio" name="refund_status" value="2">已退费
+									</label>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<button type="button" class="btn btn-success">退费查询</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+			
+		</div>
+		
+		
+		
+		
+		
+		<div class="col-md-12">
+			<div class="col-md-3">
+		
+			<div class="bs-example" id="update-car" action="car.updateCar">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="car_id"
+								placeholder="输入车辆id">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="car_plate"
+								placeholder="输入车牌号">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="capacity"
+								placeholder="输入电池容量">
+						</div>
+						
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="soc"
+								placeholder="输入剩余电池百分比">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<div class="radio">
+								<label>车辆状态：</label>
+								<label> 
+									<input type="radio" name="status" value="1" checked>使用中
+								</label> 
+								<label>
+									<input type="radio" name="status" value="2">故障
+								</label>
+								<label>
+									<input type="radio" name="status" value="3">空闲
+								</label>
+								<label>
+									<input type="radio" name="status" value="4">其他
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="button" class="btn btn-success">提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			</div>
+			
+			<div class="col-md-3">
+			
+			<div class="bs-example" id="update-box" action="box.updateBox">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="box_no"
+								placeholder="输入设备编号">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+								<div class="radio">
+								<label>联网状态：</label>
+								<label> 
+									<input type="radio" name="network" value="1" checked>在线
+								</label> 
+								<label>
+									<input type="radio" name="network" value="0">离线
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+								<div class="radio">
+								<label>设备状态：</label>
+								<label> 
+									<input type="radio" name="status" value="1" checked>正常
+								</label> 
+								<label>
+									<input type="radio" name="status" value="0">故障
+								</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="longitude"
+								placeholder="输入经度">
+						</div>
+						
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="latitude"
+								placeholder="输入纬度">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="address"
+								placeholder="输入地址">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="dynamic_code"
+								placeholder="输入动态码">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="button" class="btn btn-success">提交</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			</div>
+
+			<div class="col-md-3">
+
+				<div class="bs-example" id="add-order" action="ercar.order.addOrder">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="mer_order_id"
+									placeholder="输入订单号">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="car_plate"
+									placeholder="输入车牌号">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="radio">
+									<label>订单状态：</label>
+									<label>
+										<input type="radio" name="status" value="1" checked>进行中
+									</label>
+									<label> 
+										<input type="radio" name="status" value="2">已完成
+									</label>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="take_branch"
+									placeholder="输入取车网点">
+							</div>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" name="take_berth"
+									placeholder="输入取车泊位">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="park_branch"
+									placeholder="输入还车网点">
+							</div>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" name="park_berth"
+									placeholder="输入还车泊位">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="longitude"
+									placeholder="输入经度">
+							</div>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="latitude"
+									placeholder="输入纬度">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="begin_time"
+									placeholder="输入开始时间">
+							</div>
+							
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="end_time"
+									placeholder="输入结束时间">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="amount"
+									placeholder="输入金额">
+							</div>
+							
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="duration"
+									placeholder="输入租车时长">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+								<button type="button" class="btn btn-success">提交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+			
+			
+			<div class="col-md-3">
+
+				<div class="bs-example" id="update-order" action="ercar.order.updateOrder">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="mer_order_id"
+									placeholder="输入订单号">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="radio">
+									<label>订单状态：</label>
+									<label>
+										<input type="radio" name="status" value="1" checked>进行中
+									</label>
+									<label> 
+										<input type="radio" name="status" value="2">已完成
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="amount"
+									placeholder="输入金额">
+							</div>
+						
+							<div class="col-sm-6">
+								<input type="text" class="form-control" name="duration"
+									placeholder="输入租车时长">
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-sm-12">
+								<input type="text" class="form-control" name="end_time"
+									placeholder="输入结束时间">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-12">
+								<button type="button" class="btn btn-success">提交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+			
+		</div>
+		
+	</div>
+
+</body>
+
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</html>

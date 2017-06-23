@@ -1,0 +1,14 @@
+<dataset>
+	<sql name="updateDeptName" memo="修改部门信息">
+		UPDATE department SET dept_name = ?,updatetime = ? WHERE dept_code =? AND isvalid = 1
+	</sql>
+	<sql name="updateOrgName" memo="修改组织机构信息">
+		UPDATE organization SET org_name = ?,updatetime = ? WHERE org_code =? AND isvalid = 1
+	</sql>
+	<sql name="updateRoleName" memo="修改用户信息">
+		UPDATE role SET role_name =?,updatetime = ? WHERE role_name =? AND isvalid = 1
+	</sql>
+	<sql name="updateUserName" memo="修改用户信息">
+		UPDATE user SET updatetime = ? $dynamicsql WHERE user_name =? AND isvalid = 1
+	</sql>
+</dataset>
